@@ -181,7 +181,7 @@ var i = UIntMax(2)
 var longest = UIntMax(0)
 var longestFactors = [UIntMax]()
 var longestFactorStr = ""
-while i <= 100000 {
+while i <= 1000000 {
   let factors = primeFactorsUsingKnownPrimes(i, knownPrimes: &primes)
   let factorStr = primeFactorDescription(factors)
   //print("\(i): \(factorStr)")
