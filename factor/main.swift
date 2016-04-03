@@ -13,8 +13,10 @@ import Foundation
 func appendNextPrime<IntT: IntegerType>(inout primeArray: [IntT]) {
   if primeArray.isEmpty {
     primeArray.append(2)
+  } else if primeArray.count == 1 {
+      primeArray.append(3)
   } else {
-    var nextPrime = primeArray.last! + 1
+    var nextPrime = primeArray.last! + 2
     // Loop until we find a prime and return
     while true {
       for prime in primeArray {
@@ -26,7 +28,7 @@ func appendNextPrime<IntT: IntegerType>(inout primeArray: [IntT]) {
         }
         // Composite: divisible by a prime
         if nextPrime % prime == 0 {
-          nextPrime = nextPrime + 1
+          nextPrime = nextPrime + 2
           break
         }
       }
@@ -164,24 +166,25 @@ func primeFactorDescription<IntT: IntegerType>(factors: [IntT]) -> String {
 
 // Smoke Test
 
-var primes = [UIntMax]()
+//while primes.isEmpty || primes.last! < 10000 {
+//  appendNextPrime(&primes)
+//}
 
-while primes.isEmpty || primes.last! < 10000 {
-  appendNextPrime(&primes)
-}
-
-for prime in primes {
+//for prime in primes {
   // Don't re-use the prime array to check its own values
-  assert(isPrime(prime))
-}
+//  assert(isPrime(prime))
+//}
 
 // print(primes, separator: ", ", terminator: "\n");
 
+// Factor Run
+
+var primes = [UIntMax]()
 var i = UIntMax(2)
 var longest = UIntMax(0)
 var longestFactors = [UIntMax]()
 var longestFactorStr = ""
-while i <= 1000000 {
+while i <= 10000000 {
   let factors = primeFactorsUsingKnownPrimes(i, knownPrimes: &primes)
   let factorStr = primeFactorDescription(factors)
   //print("\(i): \(factorStr)")
