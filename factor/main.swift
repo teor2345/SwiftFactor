@@ -119,12 +119,16 @@ func primeFactorsUsingKnownPrimes<IntT: IntegerType>(n: IntT, inout knownPrimes:
   var factors = [IntT]()
 
   var divisor = primeAtIndexUsingKnownPrimes(0, knownPrimes: &knownPrimes)
-  while residual > 1 {
+  // If residual is less than divisor squared, it's the final factor
+  while residual >= divisor*divisor {
     while residual % divisor == 0 {
       residual = residual / divisor
       factors.append(divisor)
     }
     divisor = nextPrimeUsingKnownPrimes(divisor, knownPrimes: &knownPrimes)
+  }
+  if residual > 1 {
+    factors.append(residual)
   }
   return factors
 }
