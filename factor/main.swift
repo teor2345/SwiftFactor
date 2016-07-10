@@ -152,6 +152,7 @@ func primeFactors<IntT: IntegerType>(n: IntT) -> [IntT] {
   return primeFactorsUsingKnownPrimes(n, knownPrimes: &dummyPrimes)
 }
 
+// Convert the list of prime factors into p^a * q^b format (a bag)
 func primeFactorDescription<IntT: IntegerType>(factors: [IntT]) -> String {
   if factors.isEmpty {
     return ""
@@ -202,7 +203,7 @@ var i = UIntMax(2)
 var longest = UIntMax(0)
 var longestFactors = [UIntMax]()
 var longestFactorStr = ""
-while i <= 10000000 {
+while i <= 100*1000*1000 {
   let factors = primeFactorsUsingKnownPrimes(i, knownPrimes: &primes)
   let factorStr = primeFactorDescription(factors)
   //print("\(i): \(factorStr)")
