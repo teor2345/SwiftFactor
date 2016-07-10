@@ -68,7 +68,7 @@ func indexOfPrimeUsingKnownPrimes<IntT: IntegerType>(prime: IntT, inout knownPri
     appendNextPrime(&knownPrimes)
   }
   // If this fails, we've been passed a composite, or a value thats 1 or less
-  assert(knownPrimes.contains(prime))
+  //assert(knownPrimes.contains(prime))
   return knownPrimes.indexOf(prime)!
 }
 
@@ -117,7 +117,7 @@ func isPrime<IntT: IntegerType>(candidate: IntT) -> Bool {
 func primeFactorsUsingKnownPrimes<IntT: IntegerType>(n: IntT, inout knownPrimes: [IntT]) -> [IntT] {
   // We can't handle negative numbers without choosing between signed and
   // unsigned integers. (And that would screw up the generics.)
-  assert(n >= 0)
+  //assert(n >= 0)
   // Handle things that don't have prime factors
   if n == 0 || n == 1 {
     return [n]
@@ -141,6 +141,7 @@ func primeFactorsUsingKnownPrimes<IntT: IntegerType>(n: IntT, inout knownPrimes:
     divisor = nextPrimeUsingKnownPrimes(divisor, knownPrimes: &knownPrimes)
   }
   if residual > 1 {
+    //assert(isPrimeUsingKnownPrimes(residual, knownPrimes: &knownPrimes))
     factors.append(residual)
   }
   return factors
